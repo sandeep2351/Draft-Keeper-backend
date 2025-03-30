@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -8,11 +7,20 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Define allowed origins
+const allowedOrigins = [
+  'http://localhost:8080', // Local development
+  'https://draft-keeper-frontend.vercel.app' // Deployed frontend
+];
+
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:8080', // Replace '*' with your frontend's URL
-  credentials: true, // This is required to allow cookies and authorization headers
+  origin: allowedOrigins,
+  credentials: true, // Allow cookies and authorization headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 }));
+
 app.use(express.json());
 
 // Routes
