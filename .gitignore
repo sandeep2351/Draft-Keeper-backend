@@ -1,0 +1,5 @@
+node_modules
+.env
+
+echo "service-account.json" >> .gitignore
+echo "draft-keeper-firebase-adminsdk-fbsvc-239077b307.json" >> .gitignore
